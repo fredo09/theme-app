@@ -1,6 +1,6 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
 import React from 'react';
 import { View, ViewProps } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props extends ViewProps {
@@ -20,12 +20,12 @@ export const ViewThemed = ({
 }: Props) => {
     // className="bg-light-background dark:bg-dark-background"
     const bgColorView = bgColor ?? useThemeColor({}, 'background');
-    const safeArea = useSafeAreaInsets();
+    const { top: TopSafeArea } = useSafeAreaInsets();
 
     const stylesView = [
         {
             flex: 1,
-            paddingTop: isSafeArea ? safeArea.top : 0,
+            paddingTop: isSafeArea ? TopSafeArea : 0,
             marginHorizontal: isMargin ? 10 : 0,
             backgroundColor: bgColorView
         },
