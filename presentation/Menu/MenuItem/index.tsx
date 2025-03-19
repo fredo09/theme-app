@@ -20,7 +20,6 @@ export const MenuItem = ({ title, icon, name, isFirst = false, isLast = false  }
     const primaryColor = useThemeColor({},'primary'); 
     const [routeName] = name.split('/');
 
-
     return (
         <Pressable 
             onPress={() => router.push(routeName as Href)}

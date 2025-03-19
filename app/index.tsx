@@ -1,9 +1,9 @@
 import React from 'react'
+import { View } from 'react-native';
 import { MenuItem } from '@/presentation/Menu/MenuItem';
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
 
 import { animationMenuRoutes, menuRoutes, uiMenuRoutes } from '@/constants/Routes';
-import { View } from 'react-native';
 
 const ComponentApp = () => {
   return (
