@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
+import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { ViewThemed } from '@/presentation/shared/ViewThemed';
-import { TextThemed } from '@/presentation/shared/TextThemed';
+import { allRoutes } from '@/constants/Routes'
+// import { ViewThemed } from '@/presentation/shared/ViewThemed';
+// import { TextThemed } from '@/presentation/shared/TextThemed';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 // import { Stack } from 'expo-router';
@@ -43,14 +45,44 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ backgroundColor: backGroundColor, flex: 1 }}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {/* <Stack>
-        </Stack> */}
-        <ViewThemed isMargin>
+        
+        <Stack 
+          screenOptions={{
+            headerShadowVisible: false,
+            contentStyle: {
+              backgroundColor: backGroundColor
+            },
+            headerStyle: {
+              backgroundColor: backGroundColor
+            }
+          }}>
+
+          <Stack.Screen 
+            name='index' 
+            options={{
+              title: ''
+            }}/>
+
+            {
+              allRoutes.map(({ name, title }) => (
+                <Stack.Screen
+                  name={name}
+                  key={name}
+                  options={{
+                    title
+                  }}
+                />
+              ))
+            }
+
+        </Stack>
+
+        {/* <ViewThemed isMargin>
           <TextThemed className='mt-20'>
             Layout Home
           </TextThemed>
-        </ViewThemed>
-        <StatusBar style="auto" />
+        </ViewThemed> */}
+        {/* <StatusBar style="auto" /> */}
       </ThemeProvider>
     </GestureHandlerRootView>
   );

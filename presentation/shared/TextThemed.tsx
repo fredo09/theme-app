@@ -15,7 +15,7 @@ export const TextThemed = ({ className, typeText, ...restProps }: Props) => {
         <Text
             className={[
                 className,
-                'mt-10 text-3xl dark:text-dark-text text-light-text',
+                'dark:text-dark-text text-light-text',
                 typeText === 'normal' ? 'font-normal' : undefined,
                 typeText === 'h1' ? 'text-3xl' : undefined,
                 typeText === 'h2' ? 'text-xl' : undefined,
