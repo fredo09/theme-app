@@ -4,7 +4,7 @@ import { ViewThemed } from '@/presentation/shared/ViewThemed';
 import { ButtonThemed } from '@/presentation/shared/ButtonThemed';
 
 const Animation101Screen = () => {
-	const { animatedOpacity, fadeIn, fadeOut } = useAnimations();
+	const { animatedOpacity, startMovingTopPosition, animatedTop, fadeIn, fadeOut } = useAnimations();
 
   return (
     <ViewThemed isMargin className='justify-center items-center flex-1'>
@@ -13,11 +13,17 @@ const Animation101Screen = () => {
         style={{
           width: 150,
           height:150,
-          opacity: animatedOpacity
+          opacity: animatedOpacity,
+					transform: [
+						{ translateY: animatedTop },
+					]
         }}
       />
 
-      <ButtonThemed className='mb-5' onPress={fadeIn} >
+      <ButtonThemed className='mb-5' onPress={() => {
+				fadeIn();
+				startMovingTopPosition();
+			}}>
         FadeIn
       </ButtonThemed>
 
