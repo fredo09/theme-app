@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 
 import { TextThemed } from '@/presentation/shared/TextThemed';
 import { CardThemed } from '@/presentation/shared/CardThemed';
@@ -76,4 +76,5 @@ const TextInputsScreen = () => {
 		</KeyboardAvoidingView>
   );
 };
+
 export default TextInputsScreen;

@@ -10,8 +10,7 @@ export const CardThemed = ({ className, children, ...restProps }: Props) => {
 	return (
 		<View
 			{...restProps}
-			className={`bg-white dark:bg-black/10 rounded-xl p-2 shadow shadow-black/5 ${className}`}
-		>
+			className={`bg-white dark:bg-black/10 rounded-xl p-2 shadow shadow-black/5 ${className}`}>
 			{ children }
 		</View>
 	)
