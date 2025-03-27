@@ -1,4 +1,4 @@
-import { Animated } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import { useAnimations } from '@/hooks/useAnimation';
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
 import { ButtonThemed } from '@/presentation/shared/ButtonThemed';
@@ -21,13 +21,15 @@ const Animation101Screen = () => {
       />
 
       <ButtonThemed className='mb-5' onPress={() => {
-				fadeIn();
-				startMovingTopPosition();
+				fadeIn({});
+				startMovingTopPosition({
+					easing: Easing.bounce,
+				});
 			}}>
         FadeIn
       </ButtonThemed>
 
-      <ButtonThemed className='mb-5' onPress={fadeOut}>
+      <ButtonThemed className='mb-5' onPress={() => fadeOut({})}>
         FadeOut
       </ButtonThemed>
     </ViewThemed>
