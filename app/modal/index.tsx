@@ -1,5 +1,5 @@
-import { Link, router } from 'expo-router';
 import { Text } from 'react-native';
+import { Link, router } from 'expo-router';
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
 import { ButtonThemed } from '@/presentation/shared/ButtonThemed';
 
