@@ -6,7 +6,6 @@ import { CardThemed } from '@/presentation/shared/CardThemed';
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
 import { TextInputThemed } from '@/presentation/shared/TextInputThemed';
 
-
 const isIos = Platform.OS === 'ios';
 
 const TextInputsScreen = () => {

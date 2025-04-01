@@ -16,7 +16,7 @@ const PullToRefreshScreen = () => {
 		setTimeout(() => {
 			console.log("🚀 ~ ocultamos el refresh");
 			setIsRefreshing(false);
-		}, 5000); 
+		}, 5000);
 	}
 
   return (
