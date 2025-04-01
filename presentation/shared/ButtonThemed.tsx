@@ -11,7 +11,7 @@ export const ButtonThemed = ({ className, children, ...restProps }: Props) => {
     <Pressable
       {...restProps}
       className={`bg-light-primary dark:bg-dark-primary items-center rounded-xl px-6 py-2 active:opacity-80 ${className}`}>
-        <Text>{children}</Text>
+        <Text className="text-white text-2xl">{children}</Text>
     </Pressable>
   )
 }
