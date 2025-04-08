@@ -18,4 +18,5 @@ const ModalScreen = () => {
     </ViewThemed>
   );
 };
+
 export default ModalScreen;

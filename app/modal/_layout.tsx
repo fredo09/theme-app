@@ -7,21 +7,18 @@ const LayoutModal = () => {
 		<Stack
 			screenOptions={{
 				headerShown: false
-			}}
-		>
+			}}>
       <Stack.Screen name="index" />
       <Stack.Screen
         name="modal-window"
         options={{
           presentation: 'modal',
-        }}
-      />
+        }}/>
 			<Stack.Screen
         name="modal-window-two"
         options={{
           presentation: 'modal',
-        }}
-      />
+        }}/>
     </Stack>
 	)
 }
