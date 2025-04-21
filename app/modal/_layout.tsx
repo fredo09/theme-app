@@ -1,6 +1,5 @@
 import React from 'react'
 import { Stack } from 'expo-router';
-import { Text, View } from 'react-native'
 
 const LayoutModal = () => {
 	return (
