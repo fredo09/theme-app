@@ -1,4 +1,14 @@
-import { Text, ImageSourcePropType, FlatList, Image, useWindowDimensions } from 'react-native';
+import { useRef, useState } from 'react';
+import { router } from 'expo-router';
+import { 
+  ImageSourcePropType,
+  FlatList, 
+  Image, 
+  useWindowDimensions, 
+  NativeSyntheticEvent, 
+  NativeScrollEvent 
+} from 'react-native';
+
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
 import { TextThemed } from '@/presentation/shared/TextThemed';
 import { ButtonThemed } from '@/presentation/shared/ButtonThemed';
@@ -32,23 +42,78 @@ const items: Slide[] = [
 ];
 
 const SlidesScreen = () => {
+
+  //! saber cual es slide actual
+  const flatListRef = useRef<FlatList>(null);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isEnableScroll, setIsEnableScroll] = useState(false);
+
+
+  
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (isEnableScroll) return;
+
+    //* Obtenemos el offset "lo que sale de la pantalla" y la medida del layout
+    const { contentOffset, layoutMeasurement } = event.nativeEvent;
+    
+    //* Calculamos el slide actual dividiendo el offset por la medida del layout 
+    //* ejemplo: 0 / 375 = 0, 375 / 375 = 1, 750 / 375 = 2
+    const currentIndex = Math.floor(contentOffset.x / layoutMeasurement.width);
+    setCurrentSlideIndex(currentIndex > 0 ? currentIndex : 0);
+
+    //! habilitamos scroll cuando llegamos al ultimo slide
+    if (currentIndex === items.length - 1 ) {
+      setIsEnableScroll(true);
+    }
+
+  }
+
+  //* Navegar al siguiente slide
+  const onScrollToNext = (index: number) => {
+    console.log("🚀 ~ onScrollToNext ~ index:", index)
+    if (!flatListRef.current) return;
+
+    //* navegar al siguiente slide
+    flatListRef.current.scrollToIndex({
+      index: index++,
+      animated: true,
+    })
+  }
+
   return (
     <ViewThemed>
       <FlatList
         data={items}
+        ref={flatListRef}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <SlideItem item={item} />
         )}
+        onScroll={onScroll}
         horizontal
         pagingEnabled
+        scrollEnabled={isEnableScroll}
       />
-      <ButtonThemed className='absolute bottom-10 right-5 w-[150px]'>
-        Siguiente
-      </ButtonThemed>
-      <ButtonThemed className='absolute bottom-10 right-5 w-[150px]'>
-        Finalizar
-      </ButtonThemed>
+
+      {
+        (currentSlideIndex === items.length - 1)
+        ? (
+          <ButtonThemed 
+            className='absolute bottom-10 right-5 w-[150px]' 
+            onPress={() => router.dismiss()}>
+            Finalizar
+          </ButtonThemed>
+        )
+        : (
+          <ButtonThemed 
+            className='absolute bottom-10 right-5 w-[150px]'
+            onPress={() => onScrollToNext(currentSlideIndex + 1)}>
+              Siguiente
+          </ButtonThemed>
+        )
+      }
+      
     </ViewThemed>
   );
 };
