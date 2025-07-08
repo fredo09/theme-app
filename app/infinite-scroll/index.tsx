@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ActivityIndicator, FlatList, Image, View } from 'react-native';
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { FadeInImages } from '@/presentation/images/FadeInImages';
 
 
 interface ListItemsPropsI {
@@ -44,13 +45,19 @@ const InfiniteScrollScreen = () => {
 
 const ListImages = ({ numberItem }: ListItemsPropsI) => {
 	return (
-		<Image
-			style={{ width: '100%', height: 400}}
-			source={{ uri: `https://picsum.photos/200/300?random=${numberItem}` }}
-			resizeMode="cover"
-			accessibilityLabel={`Image number ${numberItem}`}
-			alt={`Image number ${numberItem}`}
-		/>
+		<FadeInImages 
+			uri={`https://picsum.photos/200/300?random=${numberItem}` } 
+			style={{
+			width: '100%',
+			height: 400
+		}}/>
+		// <Image
+		// 	style={{ width: '100%', height: 400}}
+		// 	source={{ uri: `https://picsum.photos/200/300?random=${numberItem}` }}
+		// 	resizeMode="cover"
+		// 	accessibilityLabel={`Image number ${numberItem}`}
+		// 	alt={`Image number ${numberItem}`}
+		// />
 	)
 }
 
