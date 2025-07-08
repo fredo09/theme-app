@@ -69,7 +69,8 @@ export default function RootLayout() {
                   name={name}
                   key={name}
                   options={{
-                    title
+                    title,
+                    headerShown: !title.includes('Slides')
                   }}
                 />
               ))
