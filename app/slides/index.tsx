@@ -42,14 +42,10 @@ const items: Slide[] = [
 ];
 
 const SlidesScreen = () => {
-
   //! saber cual es slide actual
   const flatListRef = useRef<FlatList>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isEnableScroll, setIsEnableScroll] = useState(false);
-
-
-  
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isEnableScroll) return;
