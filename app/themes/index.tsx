@@ -1,36 +1,17 @@
-import { useState } from 'react';
-import { useColorScheme } from 'nativewind';
-//import { useColorScheme } from 'react-native';
+import { useDarkMode } from '@/hooks/useDarkMode';
 
 import { CardThemed } from '@/presentation/shared/CardThemed';
-import { SwitchThemed } from '@/presentation/shared/SwitchThemed';
 import { ViewThemed } from '@/presentation/shared/ViewThemed';
+import { SwitchThemed } from '@/presentation/shared/SwitchThemed';
 
 const ThemesScreen = () => {
-  //const themeCurrent = useColorScheme(); -> version react-native
-  const { colorScheme, setColorScheme } = useColorScheme();  
-  
+  const { darkModeSettings, setDarkMode, setSystemMode } = useDarkMode();
 
-  const [darkModeSettings, setDarkModeSettings] = useState({
-    isDarkMode: colorScheme === 'dark',
-    systemMode: false //* -> Usamos para persistir el modo en el dispositivo
+  const {isDarkMode, systemMode} = darkModeSettings;
+
+  console.log("🚀 ~ realiznado el toogle desde html:", {
+  isDarkMode, systemMode
   });
-
-  const setDarkMode = (value: boolean) => {
-    setColorScheme(value ? 'dark' : 'light'); // -> seteamos el theme segun el value del switch
-
-    setDarkModeSettings({
-      isDarkMode: value,
-      systemMode: false
-    });
-  }
-
-  const setSystemMode = (value: boolean) => {
-    setDarkModeSettings({
-      isDarkMode: darkModeSettings.isDarkMode,
-      systemMode: value
-    });
-  }
 
   return (
     <ViewThemed isMargin>

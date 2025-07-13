@@ -7,16 +7,16 @@ import { allRoutes } from '@/constants/Routes'
 // import { ViewThemed } from '@/presentation/shared/ViewThemed';
 // import { TextThemed } from '@/presentation/shared/TextThemed';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-//import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { ThemedChangerContextProvider } from '@/presentation/context/ThemedChangerContext';
+//import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'; se mueve para uso del provider
 // import { Stack } from 'expo-router';
 
-//import { useColorScheme } from '@/hooks/useColorScheme';
+// import { useColorScheme } from '@/hooks/useColorScheme'; se mueve al usar el 'ThemedChangerContextProvider'
 import * as SplashScreen from 'expo-splash-screen';
 
 //* Global css
 import './../global.css';
 import 'react-native-reanimated';
-import { ThemedChangerContextProvider } from '@/presentation/context/ThemedChangerContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -24,11 +24,11 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   //! Use color theme hook expo
   const backGroundColor = useThemeColor({
-    // light: 'red',
+    // light: 'red',r
     // dark: 'indigo'
   }, 'background');
 
-  //const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme(); se elimino al usar el 'ThemedChangerContextProvider'
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });

@@ -4,7 +4,7 @@ import { Animated, Easing } from "react-native";
 export const useAnimations = () => {
     // * Crea una referencia mutable para manejar la opacidad animada. 'Animated.Value(0)' inicializa la opacidad en 0, y 'useRef' asegura que este valor persista entre renders.
     const animatedOpacity = useRef(new Animated.Value(0)).current;
-		const animatedTop = useRef(new Animated.Value(0)).current;
+	const animatedTop = useRef(new Animated.Value(0)).current;
 
 	const fadeIn = ({ 
 			toValue = 1, 
