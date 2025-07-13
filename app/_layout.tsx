@@ -7,15 +7,16 @@ import { allRoutes } from '@/constants/Routes'
 // import { ViewThemed } from '@/presentation/shared/ViewThemed';
 // import { TextThemed } from '@/presentation/shared/TextThemed';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+//import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 // import { Stack } from 'expo-router';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+//import { useColorScheme } from '@/hooks/useColorScheme';
 import * as SplashScreen from 'expo-splash-screen';
 
 //* Global css
 import './../global.css';
 import 'react-native-reanimated';
+import { ThemedChangerContextProvider } from '@/presentation/context/ThemedChangerContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,7 +28,7 @@ export default function RootLayout() {
     // dark: 'indigo'
   }, 'background');
 
-  const colorScheme = useColorScheme();
+  //const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -44,7 +45,8 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ backgroundColor: backGroundColor, flex: 1 }}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ThemedChangerContextProvider>
+      {/* <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> */}
         
         <Stack 
           screenOptions={{
@@ -77,14 +79,14 @@ export default function RootLayout() {
             }
 
         </Stack>
-
+      </ThemedChangerContextProvider>
         {/* <ViewThemed isMargin>
           <TextThemed className='mt-20'>
             Layout Home
           </TextThemed>
         </ViewThemed> */}
         {/* <StatusBar style="auto" /> */}
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </GestureHandlerRootView>
   );
 }
